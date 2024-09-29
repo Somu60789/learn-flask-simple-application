@@ -28,6 +28,30 @@ def handle_parms():
         return f"{greetings}, {name}"
     else:
         return "<h1>Some parameters are missing</h1>"
+    
+
+# Handelling api method callings 
+
+# GET    -- to get something
+# POST   -- to create something
+# PUT    -- to update something
+# DELETE -- to delete something
+
+# Function can able to allow the methods which ever present in the list else default GET
+
+@app.route("/api-methods", methods = ["GET", "PUT", "POST", "DELETE"])
+def api_method_handelling():
+    if request.method == "GET":
+        return "You called GET method\n"
+    elif request.method == "PUT":
+        return "You called PUT method\n"
+    elif request.method == "POST":
+        return "You called POST method\n"
+    elif request.method == "DELETE":
+        return "You called DELETE method\n"
+    else:
+        return "You will never ever come here"
+
 
 if __name__ == '__main__':
     app.run( host='0.0.0.0', port = 8080, debug = True)
