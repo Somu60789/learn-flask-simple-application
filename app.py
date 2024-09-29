@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response, render_template
+from flask import Flask, request, make_response, render_template, redirect, url_for
 
 app = Flask(__name__, template_folder="templates")
 
@@ -93,6 +93,11 @@ def reverse(s):
 @app.template_filter("repeat")
 def repeat(s, n=2):
     return s*n
+
+# Redirection
+@app.route("/redirect")
+def redirection():
+    return redirect(url_for("hello"))
 
 if __name__ == '__main__':
     app.run( host='0.0.0.0', port = 8080, debug = True)
