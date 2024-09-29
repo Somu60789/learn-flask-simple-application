@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %} Other Page {% endblock %}
+{% block content %}
+<p>Here is name {{name}}</p>
+<h1>Here is lname {{lname}}</h1>
+
+<H1>Filters</H1>
+<ul>
+    <p>{{name}}</p>
+    <p>{{name | upper}} </p>
+    <p>{{name | lower}}</p>
+    <p>{{name | title}}</p>
+    <p>{{name | reverse}}</p>
+    <p>{{name | repeat}}</p>
+    <p>{{name | repeat(5)}}</p>
+</ul>
+
+<a href="{{url_for("hello")}}">Other</a>
+{% endblock %}

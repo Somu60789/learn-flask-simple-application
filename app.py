@@ -78,5 +78,21 @@ def template_page():
     list = ["somu", "ramu", "mamu"]
     return render_template("other.html", name=name, lname=lname, list=list)
 
+# Usage of filters
+@app.route("/filter")
+def filter():
+    name = "Somasekhar"
+    lname = "Eruvuri"
+    list = ["somu", "ramu", "mamu"]
+    return render_template("filters.html", name=name, lname=lname, list=list)
+
+@app.template_filter("reverse")
+def reverse(s):
+    return s[::-1]
+
+@app.template_filter("repeat")
+def repeat(s, n=2):
+    return s*n
+
 if __name__ == '__main__':
     app.run( host='0.0.0.0', port = 8080, debug = True)
