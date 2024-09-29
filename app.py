@@ -1,6 +1,6 @@
-from flask import Flask, request, make_response
+from flask import Flask, request, make_response, render_template
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates")
 
 @app.route('/')
 def index():
@@ -60,6 +60,15 @@ def custom_response():
     response.status_code = 202
     response.headers["content-type"] = "application/json"
     return response
+
+
+# Template usage
+@app.route("/give-hello-world-template")
+def give_hello_world():
+    name = "Somasekhar"
+    lname = "Eruvuri"
+    list = ["somu", "ramu", "mamu"]
+    return render_template("hello.html", name=name, lname=lname, list=list)
 
 
 if __name__ == '__main__':

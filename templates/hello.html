@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World</title>
+</head>
+<body>
+    <h1>Hello, World!</h1>
+    <p>Welcome to my first HTML page.</p>
+    <p>My name is {{name}} {{lname}}</p>
+    <ul>
+        {% for item in list %}
+        <li 
+        {% if item == "somu" %} style="color: brown;" {% endif %}
+        >
+            {{item}}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
