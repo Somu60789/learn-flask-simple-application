@@ -6,9 +6,10 @@ app = Flask(__name__)
 def index():
     return "<h1>Welcome</h1>"
 
+# Usage of port numbers
 @app.route("/hello")
 def hello():
-    return "<h1>Hello World</h1>"
+    return "<h1>Hello World</h1>", 200
 
 # URL processors 
 @app.route("/greet/<name>")
