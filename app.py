@@ -1,4 +1,4 @@
-from flask import Flask, request
+from flask import Flask, request, make_response
 
 app = Flask(__name__)
 
@@ -52,6 +52,14 @@ def api_method_handelling():
         return "You called DELETE method\n"
     else:
         return "You will never ever come here"
+    
+# custome response
+@app.route("/custom-response")
+def custom_response():
+    response = make_response("We modified headers \n")
+    response.status_code = 202
+    response.headers["content-type"] = "application/json"
+    return response
 
 
 if __name__ == '__main__':
