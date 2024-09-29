@@ -70,6 +70,13 @@ def give_hello_world():
     list = ["somu", "ramu", "mamu"]
     return render_template("hello.html", name=name, lname=lname, list=list)
 
+# Use a template each time we need html page instead of creating every time
+@app.route("/template-inheretence")
+def template_page():
+    name = "Somasekhar"
+    lname = "Eruvuri"
+    list = ["somu", "ramu", "mamu"]
+    return render_template("other.html", name=name, lname=lname, list=list)
 
 if __name__ == '__main__':
     app.run( host='0.0.0.0', port = 8080, debug = True)
