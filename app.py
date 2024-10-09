@@ -99,5 +99,18 @@ def repeat(s, n=2):
 def redirection():
     return redirect(url_for("hello"))
 
+
+# Handelling POST request and FOrms
+@app.route("/dummy-login", methods = ["GET", "POST"])
+def dummyLogin():
+    if request.method == "GET":
+        return render_template("dummyLogin.html")
+    elif request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        return "Success Login" if (username == "Somu60789" and password == "Nlrdpa@1998") else "Failure Login"
+
+
+
 if __name__ == '__main__':
     app.run( host='0.0.0.0', port = 8080, debug = True)
