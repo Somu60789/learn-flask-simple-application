@@ -110,6 +110,10 @@ def dummyLogin():
         password = request.form.get("password")
         return "Success Login" if (username == "Somu60789" and password == "Nlrdpa@1998") else "Failure Login"
 
+@app.route("/file-upload", methods = ["POST"])
+def fileUpload():
+    return "Done"    
+
 
 
 if __name__ == '__main__':
