@@ -1,4 +1,5 @@
 from flask import Flask, request, make_response, render_template, redirect, url_for
+import pandas as pd
 
 app = Flask(__name__, template_folder="templates")
 
@@ -112,6 +113,9 @@ def dummyLogin():
 
 @app.route("/file-upload", methods = ["POST"])
 def fileUpload():
+    file = request.files["file"]
+    if file.content_type == "text/plain":
+        return file.read().decode()
     return "Done"    
 
 
