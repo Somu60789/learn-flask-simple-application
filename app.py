@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response, render_template, redirect, url_for
+from flask import Flask, request, make_response, render_template, redirect, url_for, Response
 import pandas as pd
 
 app = Flask(__name__, template_folder="templates")
@@ -117,6 +117,20 @@ def fileUpload():
     if file.content_type == "text/plain":
         return file.read().decode()
     return "Done"    
+
+
+@app.route("/convert-csv", methods = ["POST"])
+def convertCSV():
+    file = request.files["file"]
+    df = pd.read_excel(file)
+    response = Response(
+        df.to_csv(),
+        mimetype="text/csv",
+        headers={
+            "Content-Disposition": "attachment; filename = result.csv"
+        }
+    )
+    return response
 
 
 
