@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response, render_template, redirect, url_for, Response, send_from_directory
+from flask import Flask, request, make_response, render_template, redirect, url_for, Response, send_from_directory, jsonify
 import pandas as pd
 import os, uuid
 
@@ -148,6 +148,17 @@ def convertCSV2():
 def download():
     fileName = request.args.get("filename")
     return send_from_directory("downloads-flask-app", fileName, download_name = "result.csv")
+
+
+@app.route("/handle-post", methods = ["POST"])
+def handlePost():
+    greeting = request.json["greeting"]
+    name = request.json["name"]
+    with open("file.txt", "w") as f:
+        f.write(f"{greeting}, {name}")
+    return jsonify({"message": "Successfully written!"})
+
+
 
 if __name__ == '__main__':
     app.run( host='0.0.0.0', port = 8080, debug = True)
