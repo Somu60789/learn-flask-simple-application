@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response, render_template, redirect, url_for, Response, send_from_directory, jsonify, session, make_response
+from flask import Flask, request, make_response, render_template, redirect, url_for, Response, send_from_directory, jsonify, session, make_response, flash
 import pandas as pd
 import os, uuid
 
@@ -111,7 +111,12 @@ def dummyLogin():
     elif request.method == "POST":
         username = request.form.get("username")
         password = request.form.get("password")
-        return "Success Login" if (username == "Somu60789" and password == "Nlrdpa@1998") else "Failure Login"
+        if (username == "Somu60789" and password == "Nlrdpa@1998"):
+            flash("Success Login !!")
+            return render_template("dummyLogin.html", message = "") 
+        else: 
+            flash("Failure Login !!")
+            return render_template("dummyLogin.html", message = "")
 
 @app.route("/file-upload", methods = ["POST"])
 def fileUpload():
