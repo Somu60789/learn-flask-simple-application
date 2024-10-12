@@ -173,6 +173,11 @@ def getData():
         return render_template("hello.html", message = f"Name: {name}, Other: {other}")
     else:
         return render_template("hello.html", message = f"No session data has been set !!")
+    
+@app.route("/clear-session")
+def clearSession():
+    session.clear()
+    return render_template("hello.html", message = f"Cleared session data !!")
 
 
 if __name__ == '__main__':
