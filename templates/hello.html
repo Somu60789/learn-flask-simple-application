@@ -1,11 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Hello World</title>
-</head>
-<body>
-    <h1>Hello, World!</h1>
+{% extends "base.html" %}
+{% block content %}
+    <h1 class="special" style="color: brown;">Hello, World!</h1>
     <p>Welcome to my first HTML page.</p>
     <p>My name is {{name}} {{lname}}</p>
     <ul>
@@ -17,6 +12,6 @@
         </li>
         {% endfor %}
     </ul>
-    <img src= "/Car.png" alt = "Text"/>
-</body>
-</html>
+    <img src="/Car.png" alt="Text"/><br>
+    <p class="special">Hello </p>
+{% endblock %}
