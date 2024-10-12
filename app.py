@@ -1,4 +1,4 @@
-from flask import Flask, request, make_response, render_template, redirect, url_for, Response, send_from_directory, jsonify, session
+from flask import Flask, request, make_response, render_template, redirect, url_for, Response, send_from_directory, jsonify, session, make_response
 import pandas as pd
 import os, uuid
 
@@ -178,6 +178,12 @@ def getData():
 def clearSession():
     session.clear()
     return render_template("hello.html", message = f"Cleared session data !!")
+
+@app.route("/set-cookie")
+def setCookie():
+    response = make_response(render_template("hello.html", message = "Cookie Set !!!"))
+    response.set_cookie("cookie_name", "cookie_value")
+    return response
 
 
 if __name__ == '__main__':
