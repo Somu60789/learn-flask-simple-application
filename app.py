@@ -1,8 +1,9 @@
-from flask import Flask, request, make_response, render_template, redirect, url_for, Response, send_from_directory, jsonify
+from flask import Flask, request, make_response, render_template, redirect, url_for, Response, send_from_directory, jsonify, session
 import pandas as pd
 import os, uuid
 
 app = Flask(__name__, template_folder="templates", static_folder="static", static_url_path="/")
+app.secret_key = "2405:201:c058:a842:8f6e:1687:4c25:d632"
 
 @app.route('/')
 def index():
@@ -70,7 +71,7 @@ def give_hello_world():
     name = "Somasekhar"
     lname = "Eruvuri"
     list = ["somu", "ramu", "mamu"]
-    return render_template("hello.html", name=name, lname=lname, list=list)
+    return render_template("hello.html", name=name, lname=lname, list=list, message = "Hello")
 
 # Use a template each time we need html page instead of creating every time
 @app.route("/template-inheretence")
@@ -158,6 +159,20 @@ def handlePost():
         f.write(f"{greeting}, {name}")
     return jsonify({"message": "Successfully written!"})
 
+@app.route("/set-data")
+def setData():
+    session["name"] = "Somasekhar"
+    session["other"] = "Hello World"
+    return render_template("hello.html", message = "Session data set!!!")
+
+@app.route("/get-data")
+def getData():
+    if "name" in session.keys() and "other" in session.keys():
+        name = session["name"]
+        other = session["other"]
+        return render_template("hello.html", message = f"Name: {name}, Other: {other}")
+    else:
+        return render_template("hello.html", message = f"No session data has been set !!")
 
 
 if __name__ == '__main__':

@@ -17,4 +17,11 @@
 
     <a href="#" class="btn btn-danger">Danger Button</a>
     <a href="#" class="btn btn-primary">Primary Button</a>
+    <br>
+    <br>
+
+    <p class="special">{{message}}</p>
+
+    <a href = "{{url_for("setData")}}">Set Session Data</a><br>
+    <a href = "{{url_for("getData")}}">Get Session Data</a>
 {% endblock %}
