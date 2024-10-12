@@ -2,7 +2,7 @@ from flask import Flask, request, make_response, render_template, redirect, url_
 import pandas as pd
 import os, uuid
 
-app = Flask(__name__, template_folder="templates")
+app = Flask(__name__, template_folder="templates", static_folder="static", static_url_path="/")
 
 @app.route('/')
 def index():
