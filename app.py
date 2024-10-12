@@ -185,6 +185,11 @@ def setCookie():
     response.set_cookie("cookie_name", "cookie_value")
     return response
 
+@app.route("/get-cookie")
+def getCookie():
+    cookieValue = request.cookies["cookie_name"]
+    return render_template("hello.html", message = f"Cookie Value: {cookieValue}")
+
 
 if __name__ == '__main__':
     app.run( host='0.0.0.0', port = 8080, debug = True)
